@@ -1,20 +1,22 @@
-var WebDriver = require('selenium-webdriver'),
+var runWebdriver = require('../run-webdriver'),
 	assert = require('chai').assert,
+	host = 'localhost',
 	AxeBuilder = require('../../lib');
+
+if (process.env.REMOTE_TESTSERVER_HOST) {
+	host = process.env.REMOTE_TESTSERVER_HOST;
+}
 
 describe('outer-frame.html', function () {
 	this.timeout(10000);
 
 	var driver;
 	before(function (done) {
-		driver = new WebDriver.Builder()
-			.forBrowser('firefox')
-			.build();
-
+		driver = runWebdriver();
 		driver.manage().timeouts().setScriptTimeout(500);
 
 		driver
-			.get('http://localhost:9876/test/fixtures/outer-frame.html')
+			.get('http://' + host + ':9876/test/fixtures/outer-frame.html')
 			.then(function () {
 				done();
 			});
