@@ -30,7 +30,7 @@
     "test": "grunt test"
   },
   "peerDependencies": {
-    "selenium-webdriver": "^2.46.1",
+    "selenium-webdriver": ">= 2.46.1 < 4.0.0",
     "axe-core": "^2.0.5"
   },
   "devDependencies": {
